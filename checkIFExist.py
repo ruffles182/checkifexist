@@ -7,6 +7,7 @@ if os.name != 'nt':
   with open(nombreArchivo, 'r') as f:
     for line in f:
       cadena = 'wget -O/dev/null -q ' + line + ' && echo""  || echo ' + str(cuenta)
+      os.system(cadena)
       # print(line + " -- " + str(cuenta))
       cuenta += 1
 else:
