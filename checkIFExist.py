@@ -1,42 +1,26 @@
-import os
-import urllib2
+from urllib.request import urlopen
+from urllib.error import URLError
+from urllib.parse import urlparse
 
-# if os.name != 'nt':
+def check(url):
+  try:
+    urlopen(url)
+    return True
+  except URLError:
+    return False
+def vacio(x):
+  if x == "\n":
+    return True
+  else:
+    return False
   
 nombreArchivo = "test.txt"
 cuenta = 1
 with open(nombreArchivo, 'r') as f:
   for line in f:
-    
-    
-    if check(line):
-      print(str(cuenta))
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    # if line != "":
-
-
-
-
-      # cadena = 'wget -O/dev/null -q ' + line
-      # if not os.system(cadena):
-      #   print(str(cuenta))
-      # print(line + " -- " + str(cuenta))
+    if vacio(line):
+      print("linea vacia: " + str(cuenta))
+    else:
+      if not check(line):
+        print("no existe: " + str(cuenta))
     cuenta += 1
-# else:
-#   print("Upsss, este script está diseñado para linux... :v")
-
-def check(url):
-  try:
-    urllib2.urlopen(url)
-    return True
-  except urllib2.HTTPError:
-    return False
